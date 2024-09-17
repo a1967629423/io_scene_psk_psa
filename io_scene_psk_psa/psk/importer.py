@@ -158,7 +158,8 @@ def import_psk(psk: Psk, context, options: PskImportOptions) -> PskImportResult:
             points = [bm.verts[i] for i in point_indices]
             try:
                 bm_face = bm.faces.new(points)
-                bm_face.material_index = face.material_index
+                # bm_face.material_index = face.material_index
+                bm_face.material_index = psk.wedges[face.wedge_indices[-1]].material_index
             except ValueError:
                 # This happens for two reasons:
                 # 1. Two or more of the face's points are the same. (i.e, point indices of [0, 0, 1])
